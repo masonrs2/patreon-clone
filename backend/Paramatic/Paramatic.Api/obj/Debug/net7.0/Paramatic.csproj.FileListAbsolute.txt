@@ -1,0 +1,7 @@
+/Volumes/Passport/projects-2024/patreon-clone/backend/Paramatic/Paramatic.Api/obj/Debug/net7.0/Paramatic.csproj.AssemblyReference.cache
+/Volumes/Passport/projects-2024/patreon-clone/backend/Paramatic/Paramatic.Api/obj/Debug/net7.0/Paramatic.GeneratedMSBuildEditorConfig.editorconfig
+/Volumes/Passport/projects-2024/patreon-clone/backend/Paramatic/Paramatic.Api/obj/Debug/net7.0/Paramatic.AssemblyInfoInputs.cache
+/Volumes/Passport/projects-2024/patreon-clone/backend/Paramatic/Paramatic.Api/obj/Debug/net7.0/Paramatic.AssemblyInfo.cs
+/Volumes/Passport/projects-2024/patreon-clone/backend/Paramatic/Paramatic.Api/obj/Debug/net7.0/Paramatic.csproj.CoreCompileInputs.cache
+/Volumes/Passport/projects-2024/patreon-clone/backend/Paramatic/Paramatic.Api/obj/Debug/net7.0/Paramatic.MvcApplicationPartsAssemblyInfo.cs
+/Volumes/Passport/projects-2024/patreon-clone/backend/Paramatic/Paramatic.Api/obj/Debug/net7.0/Paramatic.MvcApplicationPartsAssemblyInfo.cache

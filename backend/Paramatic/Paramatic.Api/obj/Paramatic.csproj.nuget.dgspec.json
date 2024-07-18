@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Volumes/Passport/projects-2024/patreon-clone/backend/Paramatic/Paramatic.csproj": {}
+    "/Volumes/Passport/projects-2024/patreon-clone/backend/Paramatic/Paramatic.Api/Paramatic.csproj": {}
   },
   "projects": {
-    "/Volumes/Passport/projects-2024/patreon-clone/backend/Paramatic/Paramatic.csproj": {
+    "/Volumes/Passport/projects-2024/patreon-clone/backend/Paramatic/Paramatic.Api/Paramatic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Volumes/Passport/projects-2024/patreon-clone/backend/Paramatic/Paramatic.csproj",
+        "projectUniqueName": "/Volumes/Passport/projects-2024/patreon-clone/backend/Paramatic/Paramatic.Api/Paramatic.csproj",
         "projectName": "Paramatic",
-        "projectPath": "/Volumes/Passport/projects-2024/patreon-clone/backend/Paramatic/Paramatic.csproj",
+        "projectPath": "/Volumes/Passport/projects-2024/patreon-clone/backend/Paramatic/Paramatic.Api/Paramatic.csproj",
         "packagesPath": "/Users/masonsepulveda/.nuget/packages/",
-        "outputPath": "/Volumes/Passport/projects-2024/patreon-clone/backend/Paramatic/obj/",
+        "outputPath": "/Volumes/Passport/projects-2024/patreon-clone/backend/Paramatic/Paramatic.Api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/masonsepulveda/.nuget/NuGet/NuGet.Config"
@@ -43,6 +43,14 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.11, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
