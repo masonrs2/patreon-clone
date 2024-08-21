@@ -1,6 +1,12 @@
+using System.Reflection.Metadata;
 using Paramatic.UnitOfWork;
 using Paramatic.Data;
 using Microsoft.EntityFrameworkCore;
+using Paramatic.Services;
+using DotNetEnv;
+
+// Load environment variables from .env file
+Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<S3Service>();
 
 // Add the database context and unit of work
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
