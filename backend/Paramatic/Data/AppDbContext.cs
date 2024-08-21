@@ -11,6 +11,8 @@ namespace Paramatic.Data
         }
 
         public DbSet<User> Users { get; set; } = null!;
+        public DbSet<Creator> Creators { get; set; } = null!;
+        public DbSet<Post> Posts { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
