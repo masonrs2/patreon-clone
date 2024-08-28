@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "omQhlzvbxuHZkYHiaWz5Atrl7tzkRmZihFNALZ7G7hCqVa7cVJGAGInfq/Nlqq8U6IxaPDswwLsC4ozOFDDy4g==",
+  "dgSpecHash": "3Ws3lv/Wj1lJ9DJDBY+p3p1G5Tk5eyCxrugYUHHn8yZpXWvCQxdrjqrQ00YLALhOl9IXJjP6oTAylt26t98H5A==",
   "success": true,
-  "projectFilePath": "/home/mason/Projects/patreon-clone/backend/Paramatic/Paramatic.csproj",
+  "projectFilePath": "/mnt/c/Users/mason/Documents/Projects/patreon-clone/backend/Paramatic/Paramatic.csproj",
   "expectedPackageFiles": [
     "/home/mason/.nuget/packages/awssdk.core/3.7.400.9/awssdk.core.3.7.400.9.nupkg.sha512",
     "/home/mason/.nuget/packages/awssdk.s3/3.7.402/awssdk.s3.3.7.402.nupkg.sha512",

@@ -3,6 +3,7 @@ using Amazon.S3.Transfer;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using DotNetEnv;
 
 namespace Paramatic.Services
 {
@@ -13,6 +14,9 @@ namespace Paramatic.Services
 
         public S3Service()
         {
+            // Load .env file
+            DotNetEnv.Env.Load();
+
             _s3Client = new AmazonS3Client(
                 Environment.GetEnvironmentVariable("AWS_ACCESS_KEY"),
                 Environment.GetEnvironmentVariable("AWS_SECRET_KEY"),

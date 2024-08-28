@@ -25,7 +25,7 @@ namespace Paramatic.Controllers
         [HttpGet("{id}")]
         public IActionResult GetCreator(int id)
         {
-            var creator = _unitOfWork.Repository<Creator>().GetById(id)
+            var creator = _unitOfWork.Repository<Creator>().GetById(id);
             if (creator == null) 
                 return NotFound();
 

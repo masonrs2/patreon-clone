@@ -23,6 +23,11 @@ public class UsersController : ControllerBase
     [HttpPost]
     public IActionResult CreateUser(User user)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
         _unitOfWork.Repository<User>().Add(user);
         _unitOfWork.Complete();
         return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);

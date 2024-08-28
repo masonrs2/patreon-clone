@@ -7487,11 +7487,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/mason/Projects/patreon-clone/backend/Paramatic/Paramatic.csproj",
+      "projectUniqueName": "/mnt/c/Users/mason/Documents/Projects/patreon-clone/backend/Paramatic/Paramatic.csproj",
       "projectName": "Paramatic",
-      "projectPath": "/home/mason/Projects/patreon-clone/backend/Paramatic/Paramatic.csproj",
+      "projectPath": "/mnt/c/Users/mason/Documents/Projects/patreon-clone/backend/Paramatic/Paramatic.csproj",
       "packagesPath": "/home/mason/.nuget/packages/",
-      "outputPath": "/home/mason/Projects/patreon-clone/backend/Paramatic/obj/",
+      "outputPath": "/mnt/c/Users/mason/Documents/Projects/patreon-clone/backend/Paramatic/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/mason/.nuget/NuGet/NuGet.Config"

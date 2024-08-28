@@ -38,28 +38,19 @@ namespace Paramatic.Controllers
        }
 
        [HttpPost] 
-       public async Task<IActionResult> CreatePost([FromForm] PostCreateDto postDto)
-        {
-            var post = new Post
-            {
-                Title = postDto.Title,
-                ImagePreview = postDto.ImagePreview,
-                Description = postDto.Description,
-                CreatorId = postDto.CreatorId
-            };
+       public async Task<IActionResult> CreatePost([FromForm] Post post)
+       {
+           if(post.VideoContent != null && post.VideoContent.Length > 0)
+           {
+               using var stream = post.VideoContent.OpenReadStream();
+               post.VideoUrl = await _s3Service.UploadFileAsync(stream, post.VideoContent.FileName);
+           }
 
-            if(postDto.VideoContent != null && postDto.VideoContent.Length > 0)
-            {
-                using var stream = postDto.VideoContent.OpenReadStream();
-                post.VideoUrl = await _s3Service.UploadFileAsync(stream, postDto.VideoContent.FileName);
-            }
+           _unitOfWork.Repository<Post>().Add(post);
+           _unitOfWork.Complete();
 
-            _unitOfWork.Repository<Post>().Add(post);
-            _unitOfWork.Complete();
-
-            return CreatedAtAction(nameof(GetPost), new { id = post.Id }, post);
-        }
-    }
+           return CreatedAtAction(nameof(GetPost), new { id = post.Id }, post);
+       }
 
     public class PostCreateDto
     {
@@ -77,4 +68,4 @@ namespace Paramatic.Controllers
         public string Desciption { get; set; } = string.Empty;
         public IFormFile? VideoContent { get; set; } 
     }
-}
+}}
