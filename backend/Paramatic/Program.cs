@@ -34,7 +34,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-# Region Middleware 
 app.UseHttpsRedirection();
 
 var summaries = new[]
