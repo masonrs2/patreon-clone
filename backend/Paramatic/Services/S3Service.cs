@@ -4,36 +4,53 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using DotNetEnv;
+using Microsoft.AspNetCore.Http;
 
 namespace Paramatic.Services
 {
     public class S3Service
     {
         private readonly IAmazonS3 _s3Client;
-        private readonly string _bucketName;
+        private readonly string _bucketName = "video-posts";
 
         public S3Service()
         {
-            // Load .env file
-            DotNetEnv.Env.Load();
-
-            var region = Environment.GetEnvironmentVariable("AWS_REGION") ?? "us-east-2"; // Default region
-            _s3Client = new AmazonS3Client(
-                Environment.GetEnvironmentVariable("AWS_ACCESS_KEY"),
-                Environment.GetEnvironmentVariable("AWS_SECRET_KEY"),
-                Amazon.RegionEndpoint.GetBySystemName(region)
-            );
-            _bucketName = Environment.GetEnvironmentVariable("AWS_BUCKET_NAME");
+            _s3Client = new AmazonS3Client(new AmazonS3Config
+            {
+                RegionEndpoint = Amazon.RegionEndpoint.USEast2
+            });
         }
 
-        public async Task<string> UploadFileAsync(Stream fileStream, string fileName)
+        public async Task<string> UploadVideoAsync(IFormFile file, string creatorId)
         {
-            var fileTransferUtility = new TransferUtility(_s3Client);
-            var key = $"videos/{Guid.NewGuid()}-{fileName}";
+            if (file == null || file.Length == 0)
+                throw new ArgumentException("No file provided");
 
-            await fileTransferUtility.UploadAsync(fileStream, _bucketName, key);
-            
-            return $"https://{_bucketName}.s3.amazonaws.com/{key}";
+            // Create a unique file name
+            string fileExtension = Path.GetExtension(file.FileName);
+            string fileName = $"{creatorId}/{Guid.NewGuid()}{fileExtension}";
+
+            try
+            {
+                // Upload to S3
+                using var stream = file.OpenReadStream();
+                var uploadRequest = new PutObjectRequest
+                {
+                    BucketName = _bucketName,
+                    Key = fileName,
+                    InputStream = stream,
+                    ContentType = file.ContentType
+                };
+
+                await _s3Client.PutObjectAsync(uploadRequest);
+
+                // Return the URL of the uploaded video
+                return $"https://{_bucketName}.s3.amazonaws.com/{fileName}";
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error uploading video: {ex.Message}");
+            }
         }
     }
 }

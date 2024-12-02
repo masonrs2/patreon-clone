@@ -2,11 +2,10 @@ using Paramatic.Models;
 
 public interface IPostRepository
 {
-    Task<Post?> GetByIdAsync(string id);
-    Task<IEnumerable<Post>> GetAllAsync();
-    Task CreateAsync(Post post);
-    Task UpdateAsync(Post post);
-    Task DeleteAsync(string id);
+    Task<Post?> GetPostByIdAsync(string id);
+    Task<IEnumerable<Post>> GetAllPostsAsync();
+    Task CreatePostAsync(Post post);
+    Task UpdatePostAsync(Post post);    Task DeletePostAsync(string id);
     
     // Post-specific methods can be added here
     Task<IEnumerable<Post>> GetPostsByCreatorIdAsync(string creatorId);

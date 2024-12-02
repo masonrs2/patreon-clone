@@ -65,14 +65,31 @@ namespace Paramatic.Controllers
         [HttpPost]
         public async Task<IActionResult> CreatePost([FromForm] Post post)
         {
-            if(post.VideoContent != null && post.VideoContent.Length > 0)
+            try 
             {
-                using var stream = post.VideoContent.OpenReadStream();
-                post.VideoUrl = await _s3Service.UploadFileAsync(stream, post.VideoContent.FileName);
-            }
+                // Handle video upload if present
+                if(post.VideoContent != null && post.VideoContent.Length > 0)
+                {
+                    // Upload to S3 and get the URL
+                    post.VideoUrl = await _s3Service.UploadVideoAsync(
+                        post.VideoContent, 
+                        post.CreatorId
+                    );
+                }
 
-            await _repository.CreateAsync(post);
-            return CreatedAtAction(nameof(GetPost), new { id = post.id }, post);
+                // Save post metadata to DynamoDB
+                await _repository.CreateAsync(post);
+
+                return CreatedAtAction(
+                    nameof(GetPost), 
+                    new { id = post.id }, 
+                    post
+                );
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Error = ex.Message });
+            }
         }
 
         [HttpGet("debug")]

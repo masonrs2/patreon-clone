@@ -15,27 +15,27 @@ namespace Paramatic.Repositories
             _context = context;
         }
 
-        public async Task<Post?> GetByIdAsync(string id)
+        public async Task<Post?> GetPostByIdAsync(string id)
         {
             return await _context.LoadAsync<Post>(id);
         }
 
-        public async Task<IEnumerable<Post>> GetAllAsync()
+        public async Task<IEnumerable<Post>> GetAllPostsAsync()
         {
             return await _context.ScanAsync<Post>(new List<ScanCondition>()).GetRemainingAsync();
         }
 
-        public async Task CreateAsync(Post post)
+        public async Task CreatePostAsync(Post post)
         {
             await _context.SaveAsync(post);
         }
 
-        public async Task UpdateAsync(Post post)
+        public async Task UpdatePostAsync(Post post)
         {
             await _context.SaveAsync(post);
         }
 
-        public async Task DeleteAsync(string id)
+        public async Task DeletePostAsync(string id)
         {
             await _context.DeleteAsync<Post>(id);
         }
@@ -54,7 +54,7 @@ namespace Paramatic.Repositories
         public async Task<IEnumerable<Post>> GetRecentPostsAsync(int limit)
         {
             // Implement post-specific logic here
-            var posts = await GetAllAsync();
+            var posts = await GetAllPostsAsync();
             return posts.OrderByDescending(p => p.CreatedAt).Take(limit);
         }
     }
