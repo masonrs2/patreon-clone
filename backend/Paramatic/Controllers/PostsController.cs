@@ -1,7 +1,6 @@
 using System.Security.AccessControl;
 using Microsoft.AspNetCore.Mvc;
 using Paramatic.Models;
-using Paramatic.Repositories;
 using Paramatic.Services;
 using System.IO;
 using System.Threading.Tasks;
@@ -15,48 +14,24 @@ namespace Paramatic.Controllers
     [Route("api/[controller]")]
     public class PostController : ControllerBase
     {
-        private readonly IPostRepository _repository;
-        private readonly S3Service _s3Service;
+        private readonly IPostService _postService;
 
-        public PostController(IPostRepository repository, S3Service s3Service)
+        public PostController(IPostService postService)
         {
-            _repository = repository;
-            _s3Service = s3Service;
-        }
-
-        [HttpGet("health")]
-        public async Task<IActionResult> HealthCheck()
-        {
-            try
-            {
-                // Try to get all posts - this will verify DB connection
-                var posts = await _repository.GetAllAsync();
-                return Ok(new { 
-                    Status = "Connected", 
-                    PostCount = posts.Count(),
-                    Message = "Successfully connected to DynamoDB Posts table" 
-                });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { 
-                    Status = "Error", 
-                    Message = $"Failed to connect to DynamoDB: {ex.Message}" 
-                });
-            }
+            _postService = postService;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllPosts()
         {
-            var posts = await _repository.GetAllAsync();
+            var posts = await _postService.GetAllPostsAsync();
             return Ok(posts);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPost(string id)
         {
-            var post = await _repository.GetByIdAsync(id);
+            var post = await _postService.GetPostByIdAsync(id);
             if (post == null)
                 return NotFound();
             return Ok(post);
@@ -67,51 +42,16 @@ namespace Paramatic.Controllers
         {
             try 
             {
-                // Handle video upload if present
-                if(post.VideoContent != null && post.VideoContent.Length > 0)
-                {
-                    // Upload to S3 and get the URL
-                    post.VideoUrl = await _s3Service.UploadVideoAsync(
-                        post.VideoContent, 
-                        post.CreatorId
-                    );
-                }
-
-                // Save post metadata to DynamoDB
-                await _repository.CreateAsync(post);
-
+                var createdPost = await _postService.CreatePostAsync(post, post.VideoContent);
                 return CreatedAtAction(
                     nameof(GetPost), 
-                    new { id = post.id }, 
-                    post
+                    new { id = createdPost.id }, 
+                    createdPost
                 );
             }
             catch (Exception ex)
             {
                 return StatusCode(500, new { Error = ex.Message });
-            }
-        }
-
-        [HttpGet("debug")]
-        public async Task<IActionResult> DebugAWSConnection()
-        {
-            try 
-            {
-                var client = new AmazonDynamoDBClient();
-                var tables = await client.ListTablesAsync();
-                
-                return Ok(new { 
-                    Region = client.Config.RegionEndpoint.SystemName,
-                    Tables = tables.TableNames,
-                    Message = "Successfully connected to AWS"
-                });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { 
-                    Error = ex.Message,
-                    StackTrace = ex.StackTrace
-                });
             }
         }
     }

@@ -29,6 +29,9 @@ builder.Services.AddScoped<IPostRepository, PostRepository>();
 
 builder.Services.AddControllers();
 
+// Add this line with your other service registrations
+builder.Services.AddScoped<IPostService, PostService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
