@@ -1,4 +1,5 @@
 using Amazon.S3;
+using Amazon.S3.Model;
 using Amazon.S3.Transfer;
 using System;
 using System.IO;
@@ -11,7 +12,7 @@ namespace Paramatic.Services
     public class S3Service
     {
         private readonly IAmazonS3 _s3Client;
-        private readonly string _bucketName = "video-posts";
+        private readonly string _bucketName = "paramatic-video-posts";
 
         public S3Service()
         {
