@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/mnt/c/Users/mason/Documents/Projects/patreon-clone/backend/Paramatic/Paramatic.csproj": {}
+    "/Users/masonsepulveda/Projects/patreon-clone/backend/Paramatic/Paramatic.csproj": {}
   },
   "projects": {
-    "/mnt/c/Users/mason/Documents/Projects/patreon-clone/backend/Paramatic/Paramatic.csproj": {
+    "/Users/masonsepulveda/Projects/patreon-clone/backend/Paramatic/Paramatic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/mnt/c/Users/mason/Documents/Projects/patreon-clone/backend/Paramatic/Paramatic.csproj",
+        "projectUniqueName": "/Users/masonsepulveda/Projects/patreon-clone/backend/Paramatic/Paramatic.csproj",
         "projectName": "Paramatic",
-        "projectPath": "/mnt/c/Users/mason/Documents/Projects/patreon-clone/backend/Paramatic/Paramatic.csproj",
-        "packagesPath": "/home/mason/.nuget/packages/",
-        "outputPath": "/mnt/c/Users/mason/Documents/Projects/patreon-clone/backend/Paramatic/obj/",
+        "projectPath": "/Users/masonsepulveda/Projects/patreon-clone/backend/Paramatic/Paramatic.csproj",
+        "packagesPath": "/Users/masonsepulveda/.nuget/packages/",
+        "outputPath": "/Users/masonsepulveda/Projects/patreon-clone/backend/Paramatic/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/mason/.nuget/NuGet/NuGet.Config"
+          "/Users/masonsepulveda/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -38,6 +38,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "AWSSDK.DynamoDBv2": {
+              "target": "Package",
+              "version": "[3.7.300.27, )"
+            },
             "AWSSDK.S3": {
               "target": "Package",
               "version": "[3.7.402, )"
@@ -94,7 +98,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.108/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/opt/homebrew/Cellar/dotnet@8/8.0.11/libexec/sdk/8.0.111/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

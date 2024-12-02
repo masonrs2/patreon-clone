@@ -17,10 +17,11 @@ namespace Paramatic.Services
             // Load .env file
             DotNetEnv.Env.Load();
 
+            var region = Environment.GetEnvironmentVariable("AWS_REGION") ?? "us-east-2"; // Default region
             _s3Client = new AmazonS3Client(
                 Environment.GetEnvironmentVariable("AWS_ACCESS_KEY"),
                 Environment.GetEnvironmentVariable("AWS_SECRET_KEY"),
-                Amazon.RegionEndpoint.GetBySystemName(Environment.GetEnvironmentVariable("AWS_REGION"))
+                Amazon.RegionEndpoint.GetBySystemName(region)
             );
             _bucketName = Environment.GetEnvironmentVariable("AWS_BUCKET_NAME");
         }
