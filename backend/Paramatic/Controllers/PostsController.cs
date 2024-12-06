@@ -37,19 +37,19 @@ namespace Paramatic.Controllers
         {
             var post = await _postService.GetPostByIdAsync(id);
             if (post == null)
-                return NotFound();
+            return NotFound();
             return Ok(post);
         }
 
         [HttpPost]
         public async Task<IActionResult> CreatePost([FromForm] Post post)
         {
-            try 
+            try
             {
                 var createdPost = await _postService.CreatePostAsync(post, post.VideoContent);
                 return CreatedAtAction(
-                    nameof(GetPost), 
-                    new { id = createdPost.id }, 
+                    nameof(GetPost),
+                    new { id = createdPost.id },
                     createdPost
                 );
             }

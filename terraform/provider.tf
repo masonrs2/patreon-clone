@@ -1,3 +1,3 @@
 provider "aws" {
-  region = "us-east-1"  # or your desired region
+  region = "us-east-2"  # Changed to match bucket region
 }

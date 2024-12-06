@@ -24,8 +24,3 @@ resource "aws_api_gateway_authorizer" "token_authorizer" {
   authorizer_uri        = aws_lambda_function.authorizer.invoke_arn
   authorizer_credentials = aws_iam_role.invocation_role.arn
 }
-
-moved {
-  from = aws_api_gateway_authorizer.token_authorizer
-  to   = aws_api_gateway_authorizer.token_authorizer
-}

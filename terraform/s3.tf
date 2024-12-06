@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "video_bucket" {
-   bucket = "paramatic-video-posts-${random_id.suffix.hex}"
+   bucket = lower("paramatic-video-posts-${random_id.suffix.hex}")
    force_destroy = true
 }
 

@@ -50,7 +50,13 @@ namespace Paramatic.Repositories
         }
 
         public async Task<User?> GetByUsernameAsync(string username) {
-            return await _context.LoadAsync<User>(username);
+            var config = new DynamoDBOperationConfig
+            {
+                IndexName = "UsernameIndex"
+            };
+            
+            var results = await _context.QueryAsync<User>(username, config).GetRemainingAsync();
+            return results.FirstOrDefault();
         }
     }
 }

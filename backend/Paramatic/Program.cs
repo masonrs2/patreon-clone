@@ -31,6 +31,8 @@ builder.Services.AddControllers();
 
 // Add this line with your other service registrations
 builder.Services.AddScoped<IPostService, PostService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 
