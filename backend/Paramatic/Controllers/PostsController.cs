@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 using System.Linq;
 using System;
 using Amazon.DynamoDBv2;
+using System.Text;  // For Encoding
+using System.Security.Claims;  // For ClaimsIdentity and Claim
+using Microsoft.IdentityModel.Tokens;  // For SecurityTokenDescriptor, SigningCredentials
+using System.IdentityModel.Tokens.Jwt;  // For JwtSecurityTokenHandler
 
 namespace Paramatic.Controllers
 {

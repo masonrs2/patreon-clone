@@ -1,0 +1,85 @@
+openapi: 3.0.1
+info:
+  title: Paramatic API
+  version: "1.0"
+servers:
+  - url: https://{restApiId}.execute-api.{region}.amazonaws.com/{stage}
+    variables:
+      restApiId:
+        default: ""
+      region:
+        default: "us-east-2"
+      stage:
+        default: "${environment}"
+
+paths:
+  /posts:
+    get:
+      security:
+        - bearerAuth: []
+      x-amazon-apigateway-integration:
+        type: "MOCK"
+        requestTemplates:
+          application/json: |
+            {
+              "statusCode": 200,
+              "response": {
+                "posts": []
+              }
+            }
+        responses:
+          default:
+            statusCode: "200"
+            responseTemplates:
+              application/json: |
+                {
+                  "posts": [
+                    {
+                      "id": "1",
+                      "title": "Mock Post 1",
+                      "content": "This is a mock post"
+                    }
+                  ]
+                }
+      responses:
+        "200":
+          description: Success
+    post:
+      security:
+        - bearerAuth: []
+      x-amazon-apigateway-integration:
+        type: "MOCK"
+        requestTemplates:
+          application/json: |
+            {
+              "statusCode": 201,
+              "response": {
+                "message": "Post created successfully"
+              }
+            }
+        responses:
+          default:
+            statusCode: "201"
+            responseTemplates:
+              application/json: |
+                {
+                  "id": "2",
+                  "title": $input.json('$.title'),
+                  "content": $input.json('$.content')
+                }
+      responses:
+        "201":
+          description: Created
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: apiKey
+      name: Authorization
+      in: header
+      x-amazon-apigateway-authtype: custom
+      x-amazon-apigateway-authorizer:
+        type: token
+        authorizerUri: ${authorizer_uri}
+        authorizerResultTtlInSeconds: 300
+        identitySource: method.request.header.Authorization

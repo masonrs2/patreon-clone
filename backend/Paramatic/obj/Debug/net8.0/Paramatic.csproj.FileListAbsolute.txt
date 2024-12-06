@@ -325,3 +325,8 @@
 /Users/masonsepulveda/Projects/patreon-clone/backend/Paramatic/obj/Debug/net8.0/Paramatic.genruntimeconfig.cache
 /Users/masonsepulveda/Projects/patreon-clone/backend/Paramatic/obj/Debug/net8.0/ref/Paramatic.dll
 /Users/masonsepulveda/Projects/patreon-clone/backend/Paramatic/obj/Debug/net8.0/Paramatic.csproj.CopyComplete
+/Users/masonsepulveda/Projects/patreon-clone/backend/Paramatic/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+/Users/masonsepulveda/Projects/patreon-clone/backend/Paramatic/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/Users/masonsepulveda/Projects/patreon-clone/backend/Paramatic/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
+/Users/masonsepulveda/Projects/patreon-clone/backend/Paramatic/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
+/Users/masonsepulveda/Projects/patreon-clone/backend/Paramatic/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll

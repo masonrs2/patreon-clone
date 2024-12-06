@@ -6,9 +6,4 @@ resource "aws_dynamodb_table" "posts_table" {
         name = "id"
         type = "S"
     }
-
-    tags = {
-        Environment = "dev"
-        Project = "Paramatic"
-    }
 } 

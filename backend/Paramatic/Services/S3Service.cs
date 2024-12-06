@@ -1,11 +1,10 @@
 using Amazon.S3;
 using Amazon.S3.Model;
 using Amazon.S3.Transfer;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using DotNetEnv;
-using Microsoft.AspNetCore.Http;
 
 namespace Paramatic.Services
 {
@@ -27,13 +26,11 @@ namespace Paramatic.Services
             if (file == null || file.Length == 0)
                 throw new ArgumentException("No file provided");
 
-            // Create a unique file name
             string fileExtension = Path.GetExtension(file.FileName);
             string fileName = $"{creatorId}/{Guid.NewGuid()}{fileExtension}";
 
             try
             {
-                // Upload to S3
                 using var stream = file.OpenReadStream();
                 var uploadRequest = new PutObjectRequest
                 {
@@ -44,8 +41,6 @@ namespace Paramatic.Services
                 };
 
                 await _s3Client.PutObjectAsync(uploadRequest);
-
-                // Return the URL of the uploaded video
                 return $"https://{_bucketName}.s3.amazonaws.com/{fileName}";
             }
             catch (Exception ex)
